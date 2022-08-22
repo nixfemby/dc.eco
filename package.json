@@ -1,0 +1,23 @@
+{
+  "name": "dc.eco",
+  "version": "1.0.1",
+  "description": "A simple but powerful economy framework for discord bots based on mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxifuwu/dc.eco.git"
+  },
+  "author": "wxifuwu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wxifuwu/dc.eco/issues"
+  },
+  "homepage": "https://github.com/wxifuwu/dc.eco#readme",
+  "dependencies": {
+    "consola": "^2.15.3",
+    "mongoose": "^6.5.2"
+  }
+}
