@@ -1,6 +1,6 @@
-const profileSchema = require("../models/profile");
+import profileSchema from "../models/profile";
 
-class InventoryManager {
+export class InventoryManager {
     constructor () {}
 
     /**
@@ -119,5 +119,3 @@ class InventoryManager {
         });
     }
 }
-
-module.exports = { InventoryManager };

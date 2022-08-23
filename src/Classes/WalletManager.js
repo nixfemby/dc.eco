@@ -1,6 +1,6 @@
-const profileSchema = require("../models/profile");
+import profileSchema from "../models/profile";
 
-class WalletManager {
+export class WalletManager {
     constructor () {}
 
     /**
@@ -81,5 +81,3 @@ class WalletManager {
         });
     }
 }
-
-module.exports = { WalletManager };

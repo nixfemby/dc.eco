@@ -1,6 +1,6 @@
-const { model, Schema } = require('mongoose');
+import { model, Schema } from "mongoose";
 
-module.exports = model('eco-client-profiles', new Schema({
+export default model('eco-client-profiles', new Schema({
     userId: { type: String },
     inventory: { type: Array, default: [] },
     wallet: { type: Number, default: 1 },

@@ -1,6 +1,6 @@
-const profileSchema = require("../models/profile");
+import profileSchema from "../models/profile";
 
-class UserManager {
+export class UserManager {
     constructor () {}
 
     /**
@@ -53,5 +53,3 @@ class UserManager {
         });
     }
 }
-
-module.exports = { UserManager };
