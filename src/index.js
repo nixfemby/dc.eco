@@ -2,6 +2,7 @@ import { BankManager } from "./Classes/BankManager";
 import { UserManager } from "./Classes/UserManager";
 import { WalletManager } from "./Classes/WalletManager";
 import { InventoryManager } from "./Classes/InventoryManager";
+import { ShopManager } from "./Classes/ShopManager";
 
 export default class EconomyClient {
     /**
@@ -17,5 +18,6 @@ export default class EconomyClient {
         this.bank = new BankManager();
         this.wallet = new WalletManager();
         this.inventory = new InventoryManager();
+        this.shop = new ShopManager();
     }
 }

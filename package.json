@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/wxifuwu/dc.eco#readme",
   "dependencies": {
-    "consola": "^2.15.3",
     "mongoose": "^6.5.2"
   }
 }
