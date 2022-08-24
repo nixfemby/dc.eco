@@ -4,9 +4,7 @@
   "description": "A simple but powerful economy framework for discord bots based on mongoose",
   "type": "module",
   "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wxifuwu/dc.eco.git"
