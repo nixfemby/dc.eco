@@ -20,10 +20,6 @@ export class Wallet {
             if (amount < 1) return rej(new TypeError("The amount must be greater than 0"));
 
             const user = await profileSchema.findOne({ userId: this.userId });
-            if (!user) {
-                const newUser = await profileSchema.create({ userId: this.userId, wallet: amount });
-                return res(newUser);
-            }
 
             user.wallet += amount;
             user.lastUpdated = new Date();
@@ -44,10 +40,6 @@ export class Wallet {
             if (amount < 1) return rej(new TypeError("The amount must be greater than 0"));
 
             const user = await profileSchema.findOne({ userId: this.userId });
-            if (!user) {
-                const newUser = await profileSchema.create({ userId: this.userId, wallet: 1 });
-                return res(newUser);
-            };
 
             user.wallet -= amount;
             user.lastUpdated = new Date();
@@ -68,10 +60,6 @@ export class Wallet {
             if (amount < 1) return rej(new TypeError("The amount must be greater than 0"));
 
             const user = await profileSchema.findOne({ userId: this.userId });
-            if (!user) {
-                const newUser = await profileSchema.create({ userId: this.userId, wallet: amount });
-                return res(newUser);
-            };
 
             user.wallet = amount;
             user.lastUpdated = new Date();

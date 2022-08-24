@@ -19,10 +19,6 @@ export class Inventory {
             if(!item.name) return rej(new TypeError("The item does not have a name"));
 
             const user = await profileSchema.findOne({ userId: this.userId });
-            if (!user) {
-                const newUser = await profileSchema.create({ userId: this.userId, inventory: [item] });
-                return res(newUser);
-            }
 
             user.inventory.push(item);
             user.lastUpdated = new Date();
@@ -42,10 +38,6 @@ export class Inventory {
             if(!item.name) return rej(new TypeError("The item does not have a name")); 
 
             const user = await profileSchema.findOne({ userId: this.userId });
-            if (!user) {
-                const newUser = await profileSchema.create({ userId: this.userId });
-                return res(newUser);
-            }
 
             const itemIndex = user.inventory.findIndex((i) => i.name === item.name);
             if(itemIndex === -1) return res(null);
@@ -63,12 +55,7 @@ export class Inventory {
      */
     fetch() {
         return new Promise(async (res, rej) => {
-            const user = await profileSchema.findOne({ userId: this.userId });
-            if(!user) {
-                const newUser = await profileSchema.create({ userId: this.userId });
-                return res(newUser);
-            };
-
+            const user = await profileSchema.findOne({ userId: this.userId })
             return res(user);
         });
     }
@@ -83,10 +70,6 @@ export class Inventory {
             if(!item.name) return rej(new TypeError("The item does not have a name")); 
 
             const user = await profileSchema.findOne({ userId: this.userId });
-            if(!user) {
-                await profileSchema.create({ userId: this.userId });
-                return res(null);
-            };
 
             const itemIndex = user.inventory.findIndex((i) => i.name === item.name);
             if(itemIndex === -1) return res(null);
@@ -101,10 +84,6 @@ export class Inventory {
     clear() {
         return new Promise(async (res, rej) => {
             const user = await profileSchema.findOne({ userId: this.userId });
-            if(!user) {
-                const newUser = await profileSchema.create({ userId: this.userId });
-                return res(newUser);
-            };
 
             user.inventory = [];
             
