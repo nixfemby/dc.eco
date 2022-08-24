@@ -1,4 +1,3 @@
-import profileSchema from "../../models/profile";
 import { Bank } from "./Bank";
 import { Inventory } from "./Inventory";
 import { Wallet } from "./Wallet";
