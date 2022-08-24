@@ -1,22 +1,26 @@
-import profileSchema from "../models/profile";
+import profileSchema from "../../models/profile";
 
-export class InventoryManager {
-    constructor () {}
+export class Inventory {
+    /**
+     * Represents a user's inventory
+     * @param {string} userId 
+     */
+    constructor (userId) {
+        this.userId = userId;
+    }
 
     /**
-     * Add an item to a user's inventory
-     * @param {string} userId 
+     * Add an item to the user's inventory
      * @param {object} item
      */
-    addItem(userId, item) {
+    addItem(item) {
         return new Promise(async (res, rej) => {
-            if(!userId) return rej(new TypeError("A user ID was not provided"));
             if(!item) return rej(new TypeError("An item was not provided"));
             if(!item.name) return rej(new TypeError("The item does not have a name"));
 
-            const user = await profileSchema.findOne({ userId });
+            const user = await profileSchema.findOne({ userId: this.userId });
             if (!user) {
-                const newUser = await profileSchema.create({ userId, inventory: [item] });
+                const newUser = await profileSchema.create({ userId: this.userId, inventory: [item] });
                 return res(newUser);
             }
 
@@ -29,19 +33,17 @@ export class InventoryManager {
     }
 
     /**
-     * Remove an item from a user's inventory
-     * @param {string} userId
+     * Remove an item from the user's inventory
      * @param {object} item
      */
-    removeItem(userId, item) {
+    removeItem(item) {
         return new Promise(async (res, rej) => {
-            if(!userId) return rej(new TypeError("A user ID was not provided"));
             if(!item) return rej(new TypeError("An item was not provided"));
             if(!item.name) return rej(new TypeError("The item does not have a name")); 
 
-            const user = await profileSchema.findOne({ userId });
+            const user = await profileSchema.findOne({ userId: this.userId });
             if (!user) {
-                const newUser = await profileSchema.create({ userId });
+                const newUser = await profileSchema.create({ userId: this.userId });
                 return res(newUser);
             }
 
@@ -57,16 +59,13 @@ export class InventoryManager {
     }
 
     /**
-     * Fetch the inventory of a user
-     * @param {string} userId 
+     * Fetch the inventory of the user
      */
-    fetch(userId) {
+    fetch() {
         return new Promise(async (res, rej) => {
-            if(!userId) return rej(new TypeError("A user ID was not provided"));
-
-            const user = await profileSchema.findOne({ userId });
+            const user = await profileSchema.findOne({ userId: this.userId });
             if(!user) {
-                const newUser = await profileSchema.create({ userId });
+                const newUser = await profileSchema.create({ userId: this.userId });
                 return res(newUser);
             };
 
@@ -75,19 +74,17 @@ export class InventoryManager {
     }
 
     /**
-     * Fetch an item from a user's inventory
-     * @param {string} userId 
+     * Fetch an item from the user's inventory
      * @param {object} item 
      */
-    fetchItem(userId, item) {
+    fetchItem(item) {
         return new Promise(async (res, rej) => {
-            if(!userId) return rej(new TypeError("A user ID was not provided"));
             if(!item) return rej(new TypeError("An item was not provided"));
             if(!item.name) return rej(new TypeError("The item does not have a name")); 
 
-            const user = await profileSchema.findOne({ userId });
+            const user = await profileSchema.findOne({ userId: this.userId });
             if(!user) {
-                await profileSchema.create({ userId });
+                await profileSchema.create({ userId: this.userId });
                 return res(null);
             };
 
@@ -99,16 +96,13 @@ export class InventoryManager {
     }
 
     /**
-     * Clear the inventory of a user
-     * @param {string} userId 
+     * Clear the inventory of the user
      */
-    clear(userId) {
+    clear() {
         return new Promise(async (res, rej) => {
-            if(!userId) return rej(new TypeError("A user ID was not provided"));
-
-            const user = await profileSchema.findOne({ userId });
+            const user = await profileSchema.findOne({ userId: this.userId });
             if(!user) {
-                const newUser = await profileSchema.create({ userId });
+                const newUser = await profileSchema.create({ userId: this.userId });
                 return res(newUser);
             };
 

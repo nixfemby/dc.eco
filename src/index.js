@@ -1,8 +1,5 @@
-import { BankManager } from "./Classes/BankManager";
-import { UserManager } from "./Classes/UserManager";
-import { WalletManager } from "./Classes/WalletManager";
-import { InventoryManager } from "./Classes/InventoryManager";
-import { ShopManager } from "./Classes/ShopManager";
+import { UserManager } from "./Classes/Managers/UserManager";
+import { ShopManager } from "./Classes/Managers/ShopManager";
 
 export default class EconomyClient {
     /**
@@ -16,9 +13,6 @@ export default class EconomyClient {
         setTimeout(async () => await mongoose.connect(dbURI), 1000);
 
         this.users = new UserManager();
-        this.bank = new BankManager();
-        this.wallet = new WalletManager();
-        this.inventory = new InventoryManager();
         this.shop = new ShopManager();
     }
 }

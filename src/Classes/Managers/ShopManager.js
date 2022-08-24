@@ -1,4 +1,4 @@
-import shopSchema from "../models/shop";
+import shopSchema from "../../models/shop";
 
 export class ShopManager {
     constructor () {}
