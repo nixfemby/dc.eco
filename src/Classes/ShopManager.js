@@ -36,22 +36,14 @@ export class ShopManager {
         return new Promise(async (res, rej) => {
             if(!name) return rej(new TypeError("An item name was not provided"));
 
-            const isShopItem = await shopSchema.findOne({
-                id: 1,
-                items: {
-                    $elemMatch: {
-                        name: name,
-                    },
-                },
-            });
+            const isShopItem = await shopSchema.findOne({ id: 1, items: { $elemMatch: { name } } });
             if(!isShopItem) return res(null);
 
-            const filteredItems = isShopItem.shopItems.filter(item => item.name !== name);
+            const filteredItems = isShopItem.shopItems.filter((item) => item.name !== name);
 
             isShopItem.items = filteredItems;
 
             await isShopItem.save();
-
             return res(isShopItem);
         });
     }
@@ -78,15 +70,7 @@ export class ShopManager {
         return new Promise(async (res, rej) => {
             if(!name) return rej(new TypeError("An item name was not provided"));
 
-            const shop = await shopSchema.findOne({
-                id: 1,
-                items: {
-                    $elemMatch: {
-                        name: name,
-                    },
-                },
-            });
-
+            const shop = await shopSchema.findOne({ id: 1, items: { $elemMatch: { name } } });
             if(!shop) return res(null);
 
             return res(shop.items.find(item => item.name === name));
