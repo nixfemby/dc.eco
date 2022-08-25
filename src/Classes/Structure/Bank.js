@@ -1,4 +1,5 @@
 import profileSchema from "../../models/profile";
+import validateAmount from "../../Utils/ValidateAmount";
 
 export class Bank {
     /**
@@ -15,9 +16,8 @@ export class Bank {
      */
     addBalance(amount) {
         return new Promise(async (res, rej) => {
-            if (!amount) return rej(new TypeError("An amount was not provided"));
-            if (typeof amount !== "number") return rej(new TypeError("The amount provided is not a number"));
-            if (amount < 1) return rej(new TypeError("The amount must be greater than 0"));
+            const validationData = await validateAmount(options.price);
+            if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const user = await profileSchema.findOne({ userId: this.userId });
 
@@ -35,9 +35,8 @@ export class Bank {
      */
     subtractBalance(amount) {
         return new Promise(async (res, rej) => {
-            if (!amount) return rej(new TypeError("An amount was not provided"));
-            if (typeof amount !== "number") return rej(new TypeError("The amount provided is not a number"));
-            if (amount < 1) return rej(new TypeError("The amount must be greater than 0"));
+            const validationData = await validateAmount(options.price);
+            if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const user = await profileSchema.findOne({ userId: this.userId });
 
@@ -55,9 +54,8 @@ export class Bank {
      */
     setBalance(amount) {
         return new Promise(async (res, rej) => {
-            if (!amount) return rej(new TypeError("An amount was not provided"));
-            if (typeof amount !== "number") return rej(new TypeError("The amount provided is not a number"));
-            if (amount < 1) return rej(new TypeError("The amount must be greater than 0"));
+            const validationData = await validateAmount(options.price);
+            if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const user = await profileSchema.findOne({ userId: this.userId });
 
