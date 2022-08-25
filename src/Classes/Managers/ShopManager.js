@@ -1,4 +1,5 @@
 import shopSchema from "../../models/shop";
+import validateAmount from "../../Utils/ValidateAmount";
 
 export class ShopManager {
     constructor () {}
@@ -10,7 +11,8 @@ export class ShopManager {
     createItem(options) {
         return new Promise(async (res, rej) => {
             if (!options.name) return rej(new TypeError("An item name was not provided"));
-            if (!options.price || isNaN(parseInt(options.price)) || options.price <= 0 ) return rej(new TypeError("Item price is invalid"));
+            const validationData = await validateAmount(options.price);
+            if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const item = await shopSchema.findOne({ name: options.name });
             if (item) return res(null);
