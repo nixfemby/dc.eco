@@ -16,7 +16,7 @@ export class Wallet {
      */
     addBalance(amount) {
         return new Promise(async (res, rej) => {
-            const validationData = await validateAmount(options.price);
+            const validationData = validateAmount(options.price);
             if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const user = await profileSchema.findOne({ userId: this.userId });
@@ -35,7 +35,7 @@ export class Wallet {
      */
     subtractBalance(amount) {
         return new Promise(async (res, rej) => {
-            const validationData = await validateAmount(options.price);
+            const validationData = validateAmount(options.price);
             if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const user = await profileSchema.findOne({ userId: this.userId });
@@ -54,7 +54,7 @@ export class Wallet {
      */
     setBalance(amount) {
         return new Promise(async (res, rej) => {
-            const validationData = await validateAmount(options.price);
+            const validationData = validateAmount(options.price);
             if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const user = await profileSchema.findOne({ userId: this.userId });
