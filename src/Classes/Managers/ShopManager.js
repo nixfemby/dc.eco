@@ -11,7 +11,7 @@ export class ShopManager {
     createItem(options) {
         return new Promise(async (res, rej) => {
             if (!options.name) return rej(new TypeError("An item name was not provided"));
-            const validationData = await validateAmount(options.price);
+            const validationData = validateAmount(options.price);
             if (validationData.invalid) return rej(new TypeError(validationData.error));
 
             const item = await shopSchema.findOne({ name: options.name });
