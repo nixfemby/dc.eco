@@ -5,7 +5,7 @@ export class ShopManager {
 
     /**
      * Add an item to the global shop
-     * @param {string} userId 
+     * @param {string} name 
      * @param {number} price
      * @param {object} data
      */
@@ -30,7 +30,7 @@ export class ShopManager {
 
     /**
      * Remove an item from the global shop
-     * @param {name} userId
+     * @param {string} name
      */
     removeItem(name) {
         return new Promise(async (res, rej) => {
@@ -50,7 +50,6 @@ export class ShopManager {
 
     /**
      * Fetch the shop items
-     * @param {string} userId 
      */
     fetch() {
         return new Promise(async (res, rej) => {
@@ -63,8 +62,7 @@ export class ShopManager {
 
     /**
      * Fetch an item from the shop
-     * @param {string} userId 
-     * @param {object} item 
+     * @param {string} name 
      */
     fetchItem(name) {
         return new Promise(async (res, rej) => {
@@ -89,7 +87,6 @@ export class ShopManager {
             shop.lastUpdated = new Date();
 
             await shop.save();
-
             return res(shop);
         });
     }
